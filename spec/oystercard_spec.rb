@@ -19,4 +19,9 @@ describe Oystercard do
   it 'should increase the balance by the top_up amount' do
     expect{subject.top_up(5)}.to change{subject.balance}.from(0).to(5)
   end
+
+  it 'should raise an error when balance exceeds £90' do
+    expect{subject.top_up(91)}.to raise_error
+  end
+
 end
