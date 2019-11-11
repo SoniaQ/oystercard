@@ -17,11 +17,12 @@ class Oystercard
   end
 
   def deduct(amount)
-    fail "Minimum balance of £1 required" if balance - amount < MIN_BALANCE
+    # fail "Minimum balance of £1 required" if balance - amount < MIN_BALANCE
     @balance -= amount
   end
 
   def touch_in
+    fail "Minimum balance of £1 required" if balance < MIN_BALANCE
     @in_journey = true
   end
 
