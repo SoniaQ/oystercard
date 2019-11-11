@@ -42,4 +42,6 @@ describe Oystercard do
 
   it { is_expected.to respond_to :touch_out }
 
+  it { is_expected.to respond_to :in_journey? }
+
 end
