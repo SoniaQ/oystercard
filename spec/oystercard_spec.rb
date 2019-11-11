@@ -29,25 +29,17 @@ describe Oystercard do
     expect{ subject.deduct 4 }.to change{ subject.balance }.by -4
   end
 
-# added in minimum balance unit test on own initiative
   it 'should raise an error if minimum balance reached' do
-    subject.top_up Oystercard::MIN_BALANCE
-    expect{ subject.deduct 1 }.to raise_error "Minimum balance of £1 required"
+    expect{ subject.touch_in }.to raise_error "Minimum balance of £1 required"
   end
-  it 'should raise an error if minimum balance reached' do
-    expect{ subject.deduct 1 }.to raise_error "Minimum balance of £1 required"
-  end
-
-  it { is_expected.to respond_to :touch_in }
-
-  it { is_expected.to respond_to :touch_out }
-
-  it { is_expected.to respond_to :in_journey }
 
   it 'should show user is in journey after touch_in' do
+    subject.top_up Oystercard::MIN_BALANCE
     expect { subject.touch_in }.to change { subject.in_journey }.to true
   end
+  
   it 'should show user is not in journey after touch_out' do
+    subject.top_up Oystercard::MIN_BALANCE
     subject.touch_in
     expect { subject.touch_out }.to change { subject.in_journey }.to false
   end
