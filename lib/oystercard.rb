@@ -1,6 +1,7 @@
 class Oystercard
 
-  MAXIMUM_LIMIT = 90
+  MAX_BALANCE = 90
+  MIN_BALANCE = 1
   attr_reader :balance
 
   def initialize
@@ -9,11 +10,11 @@ class Oystercard
   def top_up(amount)
     # 'balance' does not need to be @balance in below line because the attr_reader
     # allows the specific instance of balance to be called, so @balance doesn't need to be repeated
-    fail "Maximum balance #{MAXIMUM_LIMIT} exceeded" if balance + amount > MAXIMUM_LIMIT
+    fail "Maximum balance #{MAX_BALANCE} exceeded" if balance + amount > MAX_BALANCE
     @balance += amount
   end
   def deduct(amount)
+    fail "Minimum balance of £1 required" if balance - amount < MIN_BALANCE
     @balance -= amount
   end
-
 end
