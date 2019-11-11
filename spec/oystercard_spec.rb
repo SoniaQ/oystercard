@@ -40,4 +40,6 @@ describe Oystercard do
 
   it { is_expected.to respond_to :touch_in }
 
+  it { is_expected.to respond_to :touch_out }
+
 end
