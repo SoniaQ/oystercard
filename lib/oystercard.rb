@@ -17,4 +17,7 @@ class Oystercard
     fail "Minimum balance of £1 required" if balance - amount < MIN_BALANCE
     @balance -= amount
   end
+  def touch_in
+  end
+
 end
