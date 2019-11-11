@@ -42,6 +42,14 @@ describe Oystercard do
 
   it { is_expected.to respond_to :touch_out }
 
-  it { is_expected.to respond_to :in_journey? }
+  it { is_expected.to respond_to :in_journey }
+
+  it 'should show user is in journey after touch_in' do
+    expect { subject.touch_in }.to change { subject.in_journey }.to true
+  end
+  it 'should show user is not in journey after touch_out' do
+    subject.touch_in
+    expect { subject.touch_out }.to change { subject.in_journey }.to false
+  end
 
 end
